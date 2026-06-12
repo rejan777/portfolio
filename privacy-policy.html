@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Rejan Miloti</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --fg: #f0ede6;
+    --fg2: #a09d96;
+    --fg3: #5a5754;
+    --accent: #c8f542;
+    --border: rgba(240,237,230,0.08);
+    --border2: rgba(240,237,230,0.15);
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSOR ─── */
+  .cursor {
+    position: fixed; top: 0; left: 0;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(200,245,66,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease-out;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-back {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--fg2);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .pp-hero {
+    padding: 10rem 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 100% 100% at 0% 0%, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 0% 0%, black 20%, transparent 80%);
+  }
+  .pp-hero-inner {
+    position: relative; z-index: 1;
+    max-width: 860px; margin: 0 auto;
+  }
+  .pp-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+  }
+  .pp-eyebrow::before {
+    content: ''; display: block; width: 2rem; height: 1px; background: var(--accent);
+  }
+  .pp-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+  }
+  .pp-title em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(240,237,230,0.25);
+  }
+  .pp-meta {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+    margin-top: 2rem;
+  }
+  .pp-meta-item {
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .pp-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--fg3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pp-meta-value {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--fg2);
+  }
+  .pp-meta-value span { color: var(--accent); }
+
+  /* ─── CONTENT ─── */
+  .pp-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 3rem 7rem;
+  }
+
+  .pp-toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+  }
+  .pp-toc-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .pp-toc ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 2rem;
+  }
+  .pp-toc ol li a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--fg2);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.6rem;
+    transition: color 0.2s;
+    padding: 0.3rem 0;
+  }
+  .pp-toc ol li a:hover { color: var(--accent); }
+  .toc-num {
+    color: var(--fg3);
+    font-size: 0.65rem;
+    min-width: 24px;
+  }
+
+  /* sections */
+  .pp-section {
+    margin-bottom: 4rem;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .pp-section.visible { opacity: 1; transform: none; }
+
+  .pp-section-num {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .pp-section-num::after {
+    content: ''; flex: 0 0 40px; height: 1px; background: var(--border2);
+  }
+  .pp-section-title {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+    color: var(--fg);
+  }
+  .pp-section p {
+    color: var(--fg2);
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+  .pp-section p:last-child { margin-bottom: 0; }
+
+  .pp-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .pp-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    color: var(--fg2);
+    font-size: 0.93rem;
+    font-weight: 300;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.65;
+  }
+  .pp-list li:last-child { border-bottom: none; }
+  .pp-list li::before {
+    content: '→';
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .pp-highlight {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+    color: var(--fg2);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .pp-highlight strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .pp-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  /* ─── CONTACT CARD ─── */
+  .pp-contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .pp-contact-avatar {
+    width: 50px; height: 50px; flex-shrink: 0;
+    background: rgba(200,245,66,0.1);
+    border: 1px solid rgba(200,245,66,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .pp-contact-info { flex: 1; }
+  .pp-contact-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--fg);
+    margin-bottom: 0.15rem;
+  }
+  .pp-contact-role {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg3);
+    letter-spacing: 0.05em;
+  }
+  .pp-contact-email {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,245,66,0.3);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .pp-contact-email:hover { border-color: var(--accent); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg3);
+    letter-spacing: 0.05em;
+  }
+  .footer-copy span { color: var(--accent); }
+  .footer-link {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--fg3);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--accent); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .pp-hero { padding: 8rem 1.5rem 3.5rem; }
+    .pp-body { padding: 3rem 1.5rem 5rem; }
+    .pp-toc ol { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/index.html" class="nav-logo">RM<span>.</span></a>
+  <a href="/index.html" class="nav-back">← kthehu te portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="pp-hero">
+  <div class="hero-grid-bg"></div>
+  <div class="pp-hero-inner">
+    <p class="pp-eyebrow">dokument ligjor</p>
+    <h1 class="pp-title">PRIVACY<br><em>POLICY</em></h1>
+    <div class="pp-meta">
+      <div class="pp-meta-item">
+        <span class="pp-meta-label">versioni</span>
+        <span class="pp-meta-value"><span>v1.0</span></span>
+      </div>
+      <div class="pp-meta-item">
+        <span class="pp-meta-label">hyrë në fuqi</span>
+        <span class="pp-meta-value">11 Qershor 2026</span>
+      </div>
+      <div class="pp-meta-item">
+        <span class="pp-meta-label">i zbatueshëm për</span>
+        <span class="pp-meta-value">rejanmiloti.dev</span>
+      </div>
+      <div class="pp-meta-item">
+        <span class="pp-meta-label">juridiksioni</span>
+        <span class="pp-meta-value">Tiranë, Shqipëri</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="pp-body">
+
+  <!-- TOC -->
+  <div class="pp-toc">
+    <p class="pp-toc-title">// tabela e përmbajtjes</p>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">01</span> Informacion i Përgjithshëm</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span> Të Dhënat që Mbledhim</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span> Si i Përdorim të Dhënat</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span> Cookies dhe Teknologji Gjurmimi</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span> Shërbime të Palëve të Treta</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span> Ruajtja dhe Siguria</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span> Të Drejtat Tuaja</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span> Lidhjet e Jashtme</a></li>
+      <li><a href="#s9"><span class="toc-num">09</span> Ndryshimet në Policy</a></li>
+      <li><a href="#s10"><span class="toc-num">10</span> Na Kontaktoni</a></li>
+    </ol>
+  </div>
+
+  <!-- INTRO HIGHLIGHT -->
+  <div class="pp-highlight" style="margin-bottom:3rem; opacity:0; animation: fadeUp 0.7s 0.6s forwards;">
+    <strong>Përmbledhje e shkurtër:</strong> Ky website është një portfolio personal i Rejan Milotit. Nuk mbledhim, nuk shesim dhe nuk ndajmë të dhënat tuaja personale me palë të treta për qëllime komerciale. Faqja përdor vetëm Google Fonts për tipografi — asnjë tracker, asnjë analizë e thellë.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="pp-section" id="s1">
+    <p class="pp-section-num">01</p>
+    <h2 class="pp-section-title">Informacion i Përgjithshëm</h2>
+    <p>Kjo Politikë Privatësie rregullon mënyrën se si faqja e internetit personale e <strong style="color:var(--fg)">Rejan Milotit</strong> ("ne", "unë", "website-i") trajton informacionin e vizitorëve.</p>
+    <p>Faqja shërben si portfolio personal dhe prezantim profesional i aftësive, projekteve dhe trajnimeve të Rejan Milotit — nxënës i Inxhinierisë Informatike në shkollën "Hermann Gmeiner", Tiranë. Qëllimi kryesor i faqes është informues dhe promovues, jo komercial.</p>
+    <p>Duke vizituar dhe përdorur këtë faqe, ju pranoni kushtet e kësaj politike privatësie.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 2 -->
+  <div class="pp-section" id="s2">
+    <p class="pp-section-num">02</p>
+    <h2 class="pp-section-title">Të Dhënat që Mbledhim</h2>
+    <p>Ky website është statik dhe nuk ka formularë regjistrimi, bazë të dhënash, ose sisteme backend aktive. Megjithatë, si çdo faqe interneti, disa të dhëna mund të mblidhen automatikisht gjatë vizitës suaj:</p>
+
+    <ul class="pp-list">
+      <li><strong style="color:var(--fg)">Të dhëna teknike automatike:</strong> adresa IP, lloji i shfletuesit (browser), sistemi operativ, faqja referuese, data dhe ora e vizitës — të mbledhura nga serveri i hosting-ut.</li>
+      <li><strong style="color:var(--fg)">Google Fonts:</strong> kur faqja ngarkohet, shfletuesi juaj dërgon një kërkesë te serverët e Google për të shkarkuar fontet (Syne, DM Mono, DM Sans). Google mund të regjistrojë adresën tuaj IP gjatë kësaj kërkese.</li>
+      <li><strong style="color:var(--fg)">Të dhëna kontakti (opsionale):</strong> nëse vendosni të na kontaktoni direkt me email, ne marrim vetëm informacionin që ju zgjidhni të ndani.</li>
+    </ul>
+
+    <div class="pp-highlight">
+      <strong>Çfarë NUK mbledhim:</strong> emra, adresa, numra telefoni, të dhëna financiare, cookies tracking, ose ndonjë informacion personal të identifikueshëm pa pëlqimin tuaj të shprehur.
+    </div>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 3 -->
+  <div class="pp-section" id="s3">
+    <p class="pp-section-num">03</p>
+    <h2 class="pp-section-title">Si i Përdorim të Dhënat</h2>
+    <p>Të dhënat e limituara teknike që mund të mblidhen automatikisht nga serveri i hosting-ut përdoren vetëm për:</p>
+    <ul class="pp-list">
+      <li>Sigurimin e funksionimit të duhur të faqes</li>
+      <li>Diagnostikimin e problemeve teknike</li>
+      <li>Mbrojtjen nga sulmet e mundshme kibernetike (DDoS, bot traffic)</li>
+      <li>Statistika të përgjithshme të vizitorëve (anonime, pa identifikim personal)</li>
+    </ul>
+    <p>Të dhënat e kontaktit (email) që na dërgoni vullnetarisht përdoren vetëm për t'iu kthyer përgjigje pyetjeve ose propozimeve tuaja. Nuk i ruajmë, nuk i ndajmë dhe nuk i përdorim për qëllime marketing.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 4 -->
+  <div class="pp-section" id="s4">
+    <p class="pp-section-num">04</p>
+    <h2 class="pp-section-title">Cookies dhe Teknologji Gjurmimi</h2>
+    <p>Ky website <strong style="color:var(--fg)">nuk përdor cookies</strong> të veta për gjurmim, analiza, ose marketing. Nuk kemi asnjë sistem analytics (si Google Analytics, Hotjar etj.) të integruar në faqe.</p>
+    <p>Serveri i hosting-ut mund të vendosë cookies teknike të domosdoshme për funksionimin e rrjetit të tij (CDN, mbrojtje DDoS). Këto janë jashtë kontrollit tonë të drejtpërdrejtë dhe rregullohen nga kushtet e ofruesit të hosting-ut.</p>
+    <div class="pp-highlight">
+      <strong>Shënim praktik:</strong> Mund të kontrolloni dhe menaxhoni cookies-at nga cilësimet e shfletuesit tuaj (Settings → Privacy → Cookies) pa ndikuar në funksionimin e kësaj faqeje.
+    </div>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 5 -->
+  <div class="pp-section" id="s5">
+    <p class="pp-section-num">05</p>
+    <h2 class="pp-section-title">Shërbime të Palëve të Treta</h2>
+    <p>Faqja integron shërbime nga palë të treta si vijojnë:</p>
+    <ul class="pp-list">
+      <li>
+        <span><strong style="color:var(--fg)">Google Fonts (fonts.googleapis.com):</strong> Fontet e faqes ngarkohen nga serverët e Google. Politika e privatësisë së Google zbatohet për këto ndërveprime. Informacion: <em style="color:var(--fg3)">policies.google.com/privacy</em></span>
+      </li>
+      <li>
+        <span><strong style="color:var(--fg)">Lidhjet e jashtme (projektet live):</strong> Faqja përmban lidhje drejt projekteve të realizuara (komenton.net, klinikavera-virhov.com, cep-drink.com, diagnoze.net, raymed-clinic.com). Secila faqe ka politikën e vet të privatësisë dhe ne nuk mbajmë përgjegjësi për praktikat e tyre.</span>
+      </li>
+    </ul>
+    <p>Ne nuk kemi asnjë marrëdhënie financiare me këto palë të treta në lidhje me të dhënat e vizitorëve të këtij website-i.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 6 -->
+  <div class="pp-section" id="s6">
+    <p class="pp-section-num">06</p>
+    <h2 class="pp-section-title">Ruajtja dhe Siguria e të Dhënave</h2>
+    <p>Meqë ky website nuk mbledh dhe nuk ruan të dhëna personale aktivisht, rreziku i ekspozimit të tyre është minimal. Megjithatë, marrim masa teknike dhe organizative të arsyeshme:</p>
+    <ul class="pp-list">
+      <li>Faqja shërbehet nëpërmjet protokollit <strong style="color:var(--fg)">HTTPS</strong> — komunikimi është i enkriptuar</li>
+      <li>Hosting-u menaxhohet nga ofrues me standarde moderne sigurie</li>
+      <li>Kodet burim të faqes mirëmbahen dhe përditësohen rregullisht</li>
+      <li>Email-et e kontaktit ruhen vetëm aq kohë sa nevojitet për përgjigje</li>
+    </ul>
+    <p>Asnjë metodë transmetimi mbi internet nuk është 100% e sigurt. Nëse na kontaktoni, bëjeni me ndërgjegjje për këtë rrezik të natyrshëm.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 7 -->
+  <div class="pp-section" id="s7">
+    <p class="pp-section-num">07</p>
+    <h2 class="pp-section-title">Të Drejtat Tuaja</h2>
+    <p>Sipas legjislacionit shqiptar dhe parimeve të GDPR (të cilat Shqipëria aspiron t'i harmonizojë), ju keni të drejtat e mëposhtme lidhur me të dhënat tuaja:</p>
+    <ul class="pp-list">
+      <li><strong style="color:var(--fg)">E drejta e aksesit</strong> — të kërkoni informacion mbi të dhënat që mbajmë për ju</li>
+      <li><strong style="color:var(--fg)">E drejta e fshirjes</strong> — të kërkoni fshirjen e të dhënave tuaja</li>
+      <li><strong style="color:var(--fg)">E drejta e korrektimit</strong> — të kërkoni korrigjimin e informacionit të pasaktë</li>
+      <li><strong style="color:var(--fg)">E drejta e kufizimit</strong> — të kufizoni mënyrën si i përdorim të dhënat tuaja</li>
+      <li><strong style="color:var(--fg)">E drejta e kundërshtimit</strong> — të kundërshtoni çdo përpunim të të dhënave tuaja</li>
+    </ul>
+    <p>Për të ushtruar cilëndo prej këtyre të drejtave, na kontaktoni direkt nëpërmjet emailit të listuar në seksionin 10. Do t'i kthehemi përgjigje brenda 30 ditëve.</p>
+    <div class="pp-highlight">
+      <strong>Shënim:</strong> Meqë nuk ruajmë të dhëna personale aktivisht, shumica e kërkesave mund të rezultojnë me konfirmimin se nuk disponojmë asnjë të dhënë të juaja.
+    </div>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 8 -->
+  <div class="pp-section" id="s8">
+    <p class="pp-section-num">08</p>
+    <h2 class="pp-section-title">Lidhjet e Jashtme</h2>
+    <p>Ky website përmban lidhje drejt faqeve të projekteve të realizuara dhe burimeve të tjera. Klikimi mbi këto lidhje ju drejton jashtë faqes tonë, dhe ne nuk kemi kontroll mbi politikat e privatësisë ose praktikat e atyre faqeve.</p>
+    <p>Ju inkurajojmë të lexoni politikat e privatësisë të çdo faqeje të jashtme që vizitoni. Prania e një lidhjeje në portfolion tonë nuk nënkupton miratimin e praktikave të privatësisë së asaj faqeje.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 9 -->
+  <div class="pp-section" id="s9">
+    <p class="pp-section-num">09</p>
+    <h2 class="pp-section-title">Ndryshimet në Politikën e Privatësisë</h2>
+    <p>Ne rezervojmë të drejtën të përditësojmë këtë politikë privatësie herë pas here, sidomos kur shtohen funksionalitete të reja në website (p.sh. formular kontakti, analiza, etj.).</p>
+    <p>Çdo ndryshim do të pasqyrohet në këtë faqe me datën e rishikuar "Hyrë në fuqi". Nëse ndryshimet janë thelbësore, do të bëhet njoftim i dukshëm në faqen kryesore.</p>
+    <p>Ju rekomandojmë të kontrolloni periodikisht këtë faqe. Vazhdimi i përdorimit të website-it pas ndryshimeve nënkupton pranimin e politikës së rishikuar.</p>
+  </div>
+
+  <hr class="pp-divider">
+
+  <!-- SECTION 10 -->
+  <div class="pp-section" id="s10">
+    <p class="pp-section-num">10</p>
+    <h2 class="pp-section-title">Na Kontaktoni</h2>
+    <p>Nëse keni pyetje, shqetësime ose kërkesa lidhur me këtë politikë privatësie ose mënyrën se si trajtohen të dhënat tuaja, ju lutem na kontaktoni:</p>
+    <div class="pp-contact-card">
+      <div class="pp-contact-avatar">RM</div>
+      <div class="pp-contact-info">
+        <p class="pp-contact-name">Rejan Miloti</p>
+        <p class="pp-contact-role">// junior web developer · tiranë, shqipëri</p>
+      </div>
+      <a href="mailto:rejan@miloti.dev" class="pp-contact-email">rejanmiloti@gmail.com</a>
+    </div>
+    <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--fg3);">Do t'i kthehemi çdo kërkese brenda 30 ditëve kalendarike nga data e marrjes.</p>
+  </div>
+
+</div><!-- end pp-body -->
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2026 <span>Rejan Miloti</span>. Të gjitha të drejtat e rezervuara.</p>
+  <a href="/index.html" class="footer-link">← kthehu te portfolio</a>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pp-section').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
